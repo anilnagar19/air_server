@@ -3,11 +3,11 @@ from rest_framework import viewsets, permissions, generics, filters, mixins
 from .serializers import EmployeeSerializer, EmployeeTempSerializer
 
 
-class EmployeeViewSet(mixins.ListModelMixin,
+class EmployeeViewSet(viewsets.ModelViewSet, mixins.ListModelMixin,
                       viewsets.GenericViewSet):
 
     serializer_class = EmployeeSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.AllowAny,)
 
     def get_queryset(self):
         queryset = Employee.objects.all()
