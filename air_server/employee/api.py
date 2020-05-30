@@ -7,7 +7,7 @@ class EmployeeViewSet(mixins.ListModelMixin,
                       viewsets.GenericViewSet):
 
     serializer_class = EmployeeSerializer
-    permission_classes = (permissions.AllowAny)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self):
         queryset = Employee.objects.all()
